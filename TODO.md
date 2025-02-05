@@ -1,6 +1,7 @@
 ### TODO:
 
-1. **Database Setup**:
+1. **Database**:
+   - Use **SQL Server** for storing and retrieving data.
    - Create three tables: **Patient**, **Consultation**, and **PatientToConsultation**.
 
 2. **API Development**:
@@ -22,9 +23,6 @@
 
 7. **Clean Architecture**:
    - Follow **Clean Architecture** principles and ensure best practices are followed, including validation, proper structure, and separation of concerns.
-   
-8. **Database**:
-   - Use **SQL Server** for storing and retrieving data.
 
-9. **Testing**:
+8. **Testing**:
    - Unit tests are not required for this task.
