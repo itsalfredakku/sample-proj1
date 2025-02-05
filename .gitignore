@@ -1,4 +1,3 @@
-/backend/.idea
-/backend/bin/Debug
-/backend/bin/Debug/net9.0
-/backend/obj
+.idea/
+bin/Debug/
+obj/
