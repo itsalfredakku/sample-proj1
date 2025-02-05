@@ -1,14 +1,30 @@
-- Create three tables
+### TODO:
 
-- Patient, Consultation and PatientToConsultation
+1. **Database Setup**:
+   - Create three tables: **Patient**, **Consultation**, and **PatientToConsultation**.
 
-- Create GET, POST APIs
+2. **API Development**:
+   - Implement **GET** and **POST** APIs for handling patient and consultation data.
 
-- Create UI in Next JS
+3. **Frontend**:
+   - Develop a user interface using **Next.js** for interacting with the APIs.
+   - Include functionalities to **add** new Patient and Consultation records.
+   - Implement a feature to **retrieve** a Patient's consultation history.
 
-- Add Patient and Consultation Record and GET the Patient's consultation
+4. **Attachments**:
+   - Allow users to upload **images**, **documents**, and **PDF** files during the consultation.
 
-- Include Attachments - Images, Doc and PDF - Add Validation
-  Bonus: Create PDF method using consultation and Patient Data
+5. **Form Validation**:
+   - Add **client-side and server-side validation** for form fields to ensure data integrity.
 
-Make sure you are following Clean architecture and following best practices including validation etc. No need to write unit tests. Use SQL server
+6. **PDF Generation**:
+   - Enable **PDF generation** that includes the consultation details along with the patient's data.
+
+7. **Clean Architecture**:
+   - Follow **Clean Architecture** principles and ensure best practices are followed, including validation, proper structure, and separation of concerns.
+   
+8. **Database**:
+   - Use **SQL Server** for storing and retrieving data.
+
+9. **Testing**:
+   - Unit tests are not required for this task.
