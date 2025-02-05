@@ -31,3 +31,4 @@
 /Users/akash/Desktop/Sample/backend/obj/Debug/net9.0/Backend.pdb
 /Users/akash/Desktop/Sample/backend/obj/Debug/net9.0/Backend.genruntimeconfig.cache
 /Users/akash/Desktop/Sample/backend/obj/Debug/net9.0/ref/Backend.dll
+/Users/akash/Desktop/Sample/backend/obj/Debug/net9.0/Backend.sourcelink.json
