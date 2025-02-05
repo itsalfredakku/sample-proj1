@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Backend.Controllers.API;
 
-public class ConsultationController
+[ApiController]
+[Route("api/[controller]")]
+public partial class ConsultationController : Controller
 {
     
 }
