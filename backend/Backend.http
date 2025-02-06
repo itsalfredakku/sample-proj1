@@ -1,6 +1,40 @@
-@Backend_HostAddress = http://localhost:5130
+@Backend_HostAddress = http://localhost:5000
 
-GET {{Backend_HostAddress}}/weatherforecast/
-Accept: application/json
+### Test Single file upload (valid file)
+POST {{Backend_HostAddress}}/api/upload
+Content-Type: multipart/form-data; boundary=---BOUNDARY
+
+---BOUNDARY
+Content-Disposition: form-data; name="file"; filename="test.txt"
+Content-Type: text/plain
+
+Test file content.
+---BOUNDARY--
+
+### Test Single file upload (missing file)
+POST {{Backend_HostAddress}}/api/upload
+Content-Type: multipart/form-data; boundary=---BOUNDARY
+
+---BOUNDARY--
+  
+### Test Bulk file upload
+POST {{Backend_HostAddress}}/api/upload/bulk
+Content-Type: multipart/form-data; boundary=---BOUNDARY
+
+---BOUNDARY
+Content-Disposition: form-data; name="files"; filename="test1.txt"
+Content-Type: text/plain
+
+Content for file one.
+---BOUNDARY
+Content-Disposition: form-data; name="files"; filename="test2.txt"
+Content-Type: text/plain
+
+Content for file two.
+---BOUNDARY--
+
+### Test Delete file (example key)
+// Adjust the file key below to match an existing file on the server.
+DELETE {{Backend_HostAddress}}/api/upload/delete/uploads/your-file-key.txt
 
 ###

@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "NvOgEaClJQI=",
   "success": true,
-  "projectFilePath": "/Users/akash/Desktop/Sample/backend/Backend.csproj",
+  "projectFilePath": "/Users/akash/Desktop/Sample/Backend/Backend.csproj",
   "expectedPackageFiles": [
     "/Users/akash/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/akash/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
