@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers.API;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/upload")]
 public partial class UploadController(IWebHostEnvironment environment) : Controller
 {
     [HttpPost]

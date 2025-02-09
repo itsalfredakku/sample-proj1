@@ -202,3 +202,14 @@
 2025-02-08 15:33:00.47 spid60      Setting database option PAGE_VERIFY to TORN_PAGE_DETECTION for database 'SampleDb'.
 2025-02-08 15:33:00.53 spid60      Setting database option target_recovery_time to 60 for database 'SampleDb'.
 2025-02-08 15:33:00.63 spid60      Setting database option delayed_durability to disabled for database 'SampleDb'.
+2025-02-08 15:41:08.82 spid64      Using 'dbghelp.dll' version '4.0.5'
+2025-02-08 15:49:08.92 Logon       Error: 18456, Severity: 14, State: 8.
+2025-02-08 15:49:08.92 Logon       Login failed for user 'SA'. Reason: Password did not match that for the login provided. [CLIENT: 192.168.65.1]
+2025-02-08 15:50:37.87 Logon       Error: 18456, Severity: 14, State: 8.
+2025-02-08 15:50:37.87 Logon       Login failed for user 'SA'. Reason: Password did not match that for the login provided. [CLIENT: 192.168.65.1]
+2025-02-08 15:55:34.33 Logon       Error: 18456, Severity: 14, State: 8.
+2025-02-08 15:55:34.33 Logon       Login failed for user 'SA'. Reason: Password did not match that for the login provided. [CLIENT: 192.168.65.1]
+2025-02-09 04:34:31.09 Logon       Error: 18456, Severity: 14, State: 8.
+2025-02-09 04:34:31.09 Logon       Login failed for user 'SA'. Reason: Password did not match that for the login provided. [CLIENT: 192.168.65.1]
+2025-02-09 04:35:57.53 Logon       Error: 18456, Severity: 14, State: 8.
+2025-02-09 04:35:57.53 Logon       Login failed for user 'SA'. Reason: Password did not match that for the login provided. [CLIENT: 192.168.65.1]

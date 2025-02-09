@@ -7,7 +7,7 @@ public partial class Consultation
 {
     public Guid Id { get; set; }
 
-    public DateTime? ConsultationAt { get; set; }
+    public DateTime? Consultationat { get; set; }
 
     public string? Description { get; set; }
 

@@ -7,9 +7,11 @@ public partial class Patient
 {
     public Guid Id { get; set; }
 
-    public string PatientName { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-    public DateOnly? Dob { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
+
+    public string? Address { get; set; }
 
     public string Email { get; set; } = null!;
 
