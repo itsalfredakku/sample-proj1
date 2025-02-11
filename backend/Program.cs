@@ -5,7 +5,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options => {
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        //// Optionally modify the document here.
+        // document.Info.Title = "Sample API";
+        // document.Info.Version = "v1";
+        return Task.CompletedTask;
+    });
+});
 builder.Services.AddDbContext<SampleDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SampleDbContext"));

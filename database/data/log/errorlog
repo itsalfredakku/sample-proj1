@@ -87,3 +87,4 @@
 2025-02-11 15:14:07.86 spid73      Using 'xplog70.dll' version '2022.160.4175' to execute extended stored procedure 'xp_msver'. This is an informational message only; no user action is required.
 2025-02-11 15:14:08.33 spid74      Attempting to load library 'xpstar.dll' into memory. This is an informational message only. No user action is required.
 2025-02-11 15:14:08.41 spid74      Using 'xpstar.dll' version '2022.160.4175' to execute extended stored procedure 'xp_instance_regread'. This is an informational message only; no user action is required.
+2025-02-11 15:23:59.65 spid51      Using 'dbghelp.dll' version '4.0.5'

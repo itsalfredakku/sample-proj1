@@ -10,14 +10,28 @@ namespace Backend.Controllers.API;
 [Route("api/consultations")]
 public partial class ConsultationController(SampleDbContext context) : ControllerBase
 {
+    // Hook methods for partial classes.
+    // Called before returning consultations list.
+    partial void OnConsultationsRead(ref IQueryable<Consultation> items);
+    // Called before returning a single consultation.
+    partial void OnConsultationGet(ref Consultation consultation);
+    // Called after creating a consultation.
+    partial void OnConsultationCreated(Consultation consultation);
+    // Called after updating a consultation.
+    partial void OnConsultationUpdated(Consultation consultation);
+    // Called after deleting a consultation.
+    partial void OnConsultationDeleted(Consultation consultation);
+
     // GET: api/consultations
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Consultation>>> GetConsultations()
     {
-        // Eager-load associated PatientToConsultation entries if needed.
-        var consultations = await context.Consultations
-                                         .Include(c => c.PatientToConsultations)
-                                         .ToListAsync();
+        var items = context.Consultations
+            .Include(c => c.PatientToConsultations)
+            .AsQueryable();
+            
+        OnConsultationsRead(ref items);
+        var consultations = await items.ToListAsync();
         return Ok(consultations);
     }
 
@@ -26,10 +40,13 @@ public partial class ConsultationController(SampleDbContext context) : Controlle
     public async Task<ActionResult<Consultation>> GetConsultation(Guid id)
     {
         var consultation = await context.Consultations
-                                        .Include(c => c.PatientToConsultations)
-                                        .FirstOrDefaultAsync(c => c.Id == id);
+            .Include(c => c.PatientToConsultations)
+            .FirstOrDefaultAsync(c => c.Id == id);
+
         if (consultation == null)
             return NotFound();
+
+        OnConsultationGet(ref consultation);
         return Ok(consultation);
     }
 
@@ -64,6 +81,49 @@ public partial class ConsultationController(SampleDbContext context) : Controlle
         }
 
         await context.SaveChangesAsync();
+        OnConsultationCreated(consultation);
         return CreatedAtAction(nameof(GetConsultation), new { id = consultation.Id }, consultation);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateConsultation(Guid id, [FromBody] Consultation updatedConsultation)
+    {
+        if (id != updatedConsultation.Id)
+            return BadRequest("ID mismatch");
+
+        var existingConsultation = await context.Consultations.FindAsync(id);
+        if (existingConsultation == null)
+            return NotFound();
+
+        existingConsultation.Description = updatedConsultation.Description;
+        existingConsultation.ConsultationDate = updatedConsultation.ConsultationDate;
+
+        context.Entry(existingConsultation).State = EntityState.Modified;
+        
+        try
+        {
+            await context.SaveChangesAsync();
+            OnConsultationUpdated(existingConsultation);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!await context.Consultations.AnyAsync(c => c.Id == id))
+                return NotFound();
+            throw;
+        }
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteConsultation(Guid id)
+    {
+        var consultation = await context.Consultations.FindAsync(id);
+        if (consultation == null)
+            return NotFound();
+
+        context.Consultations.Remove(consultation);
+        await context.SaveChangesAsync();
+        OnConsultationDeleted(consultation);
+        return NoContent();
     }
 }
