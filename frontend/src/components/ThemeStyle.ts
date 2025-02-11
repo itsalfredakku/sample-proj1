@@ -1,1 +1,0 @@
-export type ThemeStyle = 'primary' | 'secondary' | 'base' | 'info' | 'success' | 'warning' | 'danger';

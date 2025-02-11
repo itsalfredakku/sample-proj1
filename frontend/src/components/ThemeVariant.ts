@@ -1,1 +1,0 @@
-export type ThemeVariant = 'filled' | 'flat' | 'outlined' | 'text';
