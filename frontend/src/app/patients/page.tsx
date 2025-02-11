@@ -1,3 +1,4 @@
+'use client'
 // import Button from "@/components/button";
 import { Button } from "@/components/ui/button"
 
@@ -14,6 +15,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import React from "react";
+import ApiService from "@/services/api-service";
 
 const invoices = [
     {
@@ -60,7 +63,13 @@ const invoices = [
     },
 ];
 export default function PatientsPage() {
-
+    const [patients, setPatients] = React.useState([]);
+    React.useEffect(() => {
+        ApiService.getInstance()
+            .getPatients()
+            .then((data) => setPatients(data));
+    }, []);
+    
     return (
         <Stack className="w-full px-4" gap="1rem">
             <Row>
@@ -83,9 +92,9 @@ export default function PatientsPage() {
                 <TableCaption>A list of patients.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">Invoice</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Method</TableHead>
+                        <TableHead className="w-[100px]">Patient Name</TableHead>
+                        <TableHead>Age</TableHead>
+                        <TableHead>Last consultation</TableHead>
                         <TableHead className="text-right">Amount</TableHead>
                     </TableRow>
                 </TableHeader>
