@@ -1,3 +1,5 @@
+import Button from "@/components/button";
+import Column from "@/components/column";
 import Row from "@/components/row";
 import Stack from "@/components/stack";
 
@@ -5,11 +7,20 @@ import Stack from "@/components/stack";
 export default function PatientsPage() {
     return (
         <Stack className="w-full px-4">
-            <Row className="flex flex-row items-center justify-between">
-                <h3 className="text-2xl font-bold">Patients</h3>
-                <a href="/patients/new" className="flex items-center gap-2 hover:underline hover:underline-offset-4">
-                    New Patient
-                </a>
+            <Row>
+                <Column size="6">
+                    <Stack orientation="horizontal" justifyContent="start">
+                        <h1 className="text-2xl font-semibold">Patients</h1>
+                    </Stack>
+                </Column>
+                <Column size="6">
+                    <Stack orientation="horizontal" justifyContent="end">
+                        <Button text="New Patient" />
+                        {/* <a href="/patients/new" className="flex items-center gap-2 hover:underline hover:underline-offset-4">
+                            New Patient
+                        </a> */}
+                    </Stack>
+                </Column>
             </Row>
             <div className="grid gap-6">
                 <div className="flex flex-row items-center justify-between">
