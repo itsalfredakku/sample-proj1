@@ -18,6 +18,8 @@ public partial class SampleDbContext : DbContext
 
     public virtual DbSet<Consultation> Consultations { get; set; }
 
+    public virtual DbSet<ConsultationAttachment> ConsultationAttachments { get; set; }
+
     public virtual DbSet<Patient> Patients { get; set; }
 
     public virtual DbSet<PatientToConsultation> PatientToConsultations { get; set; }
@@ -33,24 +35,40 @@ public partial class SampleDbContext : DbContext
             entity.ToTable("Consultation");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
-            entity.Property(e => e.Consultationat).HasColumnType("datetime");
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+        });
+
+        modelBuilder.Entity<ConsultationAttachment>(entity =>
+        {
+            entity.ToTable("ConsultationAttachment");
+
+            entity.HasIndex(e => e.ConsultationId, "IDX_ConsultationAttachment_ConsultationId");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+            entity.Property(e => e.FileName)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.FilePath)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Consultation).WithMany(p => p.ConsultationAttachments)
+                .HasForeignKey(d => d.ConsultationId)
+                .HasConstraintName("FK_ConsultationAttachment_Consultation");
         });
 
         modelBuilder.Entity<Patient>(entity =>
         {
             entity.ToTable("Patient");
 
+            entity.HasIndex(e => e.Email, "UQ_Patient_Email").IsUnique();
+
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Address)
                 .HasMaxLength(200)
                 .IsUnicode(false);
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
             entity.Property(e => e.Email)
                 .HasMaxLength(150)
                 .IsUnicode(false);
@@ -60,7 +78,6 @@ public partial class SampleDbContext : DbContext
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-            entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<PatientToConsultation>(entity =>
@@ -69,18 +86,18 @@ public partial class SampleDbContext : DbContext
 
             entity.ToTable("PatientToConsultation");
 
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
+            entity.HasIndex(e => e.ConsultationId, "IDX_PatientToConsultation_ConsultationId");
+
+            entity.HasIndex(e => e.PatientId, "IDX_PatientToConsultation_PatientId");
+
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
 
             entity.HasOne(d => d.Consultation).WithMany(p => p.PatientToConsultations)
                 .HasForeignKey(d => d.ConsultationId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PatientToConsultation_Consultation");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.PatientToConsultations)
                 .HasForeignKey(d => d.PatientId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PatientToConsultation_Patient");
         });
 

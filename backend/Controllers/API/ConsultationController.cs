@@ -34,7 +34,7 @@ public partial class ConsultationController(SampleDbContext context) : Controlle
     }
 
     // DTO for creating a Consultation
-    public record CreateConsultationRequest(string Name, DateTime Date, IEnumerable<Guid> PatientIds);
+    public record CreateConsultationRequest(string Description, DateTime ConsultationAt, IEnumerable<Guid> PatientIds);
 
     // POST: api/consultations
     [HttpPost]
@@ -46,9 +46,7 @@ public partial class ConsultationController(SampleDbContext context) : Controlle
         var consultation = new Consultation
         {
             Id = Guid.NewGuid(),
-            Name = request.Name,
-            Date = request.Date,
-            // ...set other properties if needed...
+            
         };
 
         context.Consultations.Add(consultation);
