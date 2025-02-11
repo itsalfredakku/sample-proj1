@@ -60,7 +60,7 @@ export default function Button({
 
     return (
         <button
-            className={`rounded-full transition-colors flex items-center justify-center text-sm sm:text-base px-4 sm:px-5 sm:min-w-44 ${sizeClass} ${variantClasses.border} ${variantClasses.bg} ${variantClasses.text} ${variantClasses.hoverBg} ${finalHoverText} ${className || ''}`}
+            className={`rounded-full transition-colors flex items-center justify-center text-sm sm:text-base px-4 sm:px-5 sm:min-w-32 ${sizeClass} ${variantClasses.border} ${variantClasses.bg} ${variantClasses.text} ${variantClasses.hoverBg} ${finalHoverText} ${className || ''}`}
             onClick={onClick}
         >
             {text || children}

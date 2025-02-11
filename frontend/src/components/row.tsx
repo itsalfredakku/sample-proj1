@@ -25,6 +25,7 @@ export default function Row({
 		alignItems,
 		gap,
 		flexDirection: reverse ? "row-reverse" : "row",
+		flexWrap: "wrap", // enable wrapping
 	};
 
 	return (

@@ -8,12 +8,12 @@ export default function PatientsPage() {
     return (
         <Stack className="w-full px-4">
             <Row>
-                <Column size="6">
+                <Column size={6}>
                     <Stack orientation="horizontal" justifyContent="start">
                         <h1 className="text-2xl font-semibold">Patients</h1>
                     </Stack>
                 </Column>
-                <Column size="6">
+                <Column size={6}>
                     <Stack orientation="horizontal" justifyContent="end">
                         <Button text="New Patient" />
                         {/* <a href="/patients/new" className="flex items-center gap-2 hover:underline hover:underline-offset-4">

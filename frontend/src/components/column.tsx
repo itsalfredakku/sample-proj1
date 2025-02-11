@@ -1,41 +1,18 @@
 import React from "react";
 
 interface ColumnProps {
-  size?: number | string;
-  sizeXs?: number | string;
-  sizeSm?: number | string;
-  sizeMd?: number | string;
-  sizeLg?: number | string;
-  xl?: number | string;
-  className?: string;
-  children?: React.ReactNode;
+  size: number;
+  children: React.ReactNode;
 }
 
-export default function Column({
-  size,
-  sizeXs,
-  sizeSm,
-  sizeMd,
-  sizeLg,
-  xl,
-  className,
-  children,
-}: ColumnProps) {
-  // Compute responsive classes assuming convention: 
-  // col-[prop] for default, col-xs-[value], col-sm-[value], etc.
-  const responsiveClasses = [
-    size && `col-${size}`,
-    sizeXs && `col-xs-${sizeXs}`,
-    sizeSm && `col-sm-${sizeSm}`,
-    sizeMd && `col-md-${sizeMd}`,
-    sizeLg && `col-lg-${sizeLg}`,
-    xl && `col-xl-${xl}`,
-  ]
-    .filter(Boolean)
-    .join(" ");
-    
+export default function Column({ size, children }: ColumnProps) {
+  // Compute width percentage (assuming a 12-column grid)
+  const widthPercent = (size / 12) * 100;
   return (
-    <div className={`${className || ""} ${responsiveClasses}`.trim()}>
+    <div 
+      style={{ width: `${widthPercent}%` }} // set width from size prop
+      className="px-2"
+    >
       {children}
     </div>
   );
