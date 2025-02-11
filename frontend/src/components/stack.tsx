@@ -20,14 +20,30 @@ export default function Stack({
     className,
     style,
 }: StackProps) {
-    // Explicitly annotate the type as React.CSSProperties
+    // Removed gap from inlineStyles to apply spacing per child instead
     const inlineStyles: React.CSSProperties = {
         display: "flex",
         flexDirection: orientation === "vertical" ? "column" : "row",
         justifyContent,
         alignItems,
-        gap,
     };
+
+    // Apply margin spacing to each child except the last one
+    const childrenArray = React.Children.toArray(children);
+    const spacedChildren = childrenArray.map((child, index) => {
+        if (!React.isValidElement(child)) return child;
+        let marginStyle = {};
+        if (gap) {
+            if (orientation === "vertical" && index < childrenArray.length - 1) {
+                marginStyle = { marginBottom: gap };
+            } else if (orientation === "horizontal" && index < childrenArray.length - 1) {
+                marginStyle = { marginRight: gap };
+            }
+        }
+        // Cast child to React.ReactElement<any> to safely retrieve style property
+        const childStyle = ((child as React.ReactElement<any>).props.style) || {};
+        return React.cloneElement(child as React.ReactElement<any>, { style: { ...childStyle, ...marginStyle } });
+    });
 
     return (
         <div 
@@ -37,7 +53,7 @@ export default function Stack({
                 ...style
             }}
         >
-            {children}
+            {spacedChildren}
         </div>
     );
 }
