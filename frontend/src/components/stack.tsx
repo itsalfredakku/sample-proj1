@@ -7,6 +7,8 @@ interface StackProps {
     alignItems?: React.CSSProperties["alignItems"];
     gap?: string;
     children?: React.ReactNode;
+    className?: string;
+    style?: React.CSSProperties;
 }
 
 export default function Stack({
@@ -15,15 +17,24 @@ export default function Stack({
     alignItems,
     gap,
     children,
+    className,
+    style,
 }: StackProps) {
+    // Explicitly annotate the type as React.CSSProperties
+    const inlineStyles: React.CSSProperties = {
+        display: "flex",
+        flexDirection: orientation === "vertical" ? "column" : "row",
+        justifyContent,
+        alignItems,
+        gap,
+    };
+
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: orientation === "vertical" ? "column" : "row",
-                justifyContent,
-                alignItems,
-                gap,
+        <div 
+            className={className}
+            style={{ 
+                ...inlineStyles,
+                ...style
             }}
         >
             {children}

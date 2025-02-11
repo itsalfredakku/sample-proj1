@@ -6,6 +6,8 @@ interface RowProps {
 	gap?: string;
 	reverse?: boolean;
 	children?: React.ReactNode;
+	className?: string;
+	style?: React.CSSProperties;
 }
 
 export default function Row({
@@ -14,15 +16,23 @@ export default function Row({
 	gap = "0",
 	reverse = false,
 	children,
+	className,
+	style,
 }: RowProps) {
+	const inlineStyles: React.CSSProperties = {
+		display: "flex",
+		justifyContent: justifyContent === "start" ? "flex-start" : justifyContent === "end" ? "flex-end" : justifyContent === "center" ? "center" : justifyContent,
+		alignItems,
+		gap,
+		flexDirection: reverse ? "row-reverse" : "row",
+	};
+
 	return (
 		<div
+			className={className}
 			style={{
-				display: "flex",
-				justifyContent: justifyContent === "start" ? "flex-start" : justifyContent === "end" ? "flex-end" : justifyContent === "center" ? "center" : justifyContent,
-				alignItems,
-				gap,
-				flexDirection: reverse ? "row-reverse" : "row",
+				...inlineStyles,
+				...style,
 			}}
 		>
 			{children}
