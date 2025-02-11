@@ -1,4 +1,6 @@
-import Button from "@/components/button";
+// import Button from "@/components/button";
+import { Button } from "@/components/ui/button"
+
 import Column from "@/components/column";
 import Row from "@/components/row";
 import Stack from "@/components/stack";
@@ -15,7 +17,8 @@ export default function PatientsPage() {
                 </Column>
                 <Column size={6}>
                     <Stack orientation="horizontal" justifyContent="end">
-                        <Button text="New Patient" />
+                    <Button>New Patient</Button>
+                        {/* <Button text="New Patient" /> */}
                         {/* <a href="/patients/new" className="flex items-center gap-2 hover:underline hover:underline-offset-4">
                             New Patient
                         </a> */}
