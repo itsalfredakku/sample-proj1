@@ -1,11 +1,11 @@
 import React from "react";
 
 interface ColumnProps {
-  size: number;
+  size?: number;
   children: React.ReactNode;
 }
 
-export default function Column({ size, children }: ColumnProps) {
+export default function Column({ size = 12, children }: ColumnProps) {
   // Compute width percentage (assuming a 12-column grid)
   const widthPercent = (size / 12) * 100;
   return (

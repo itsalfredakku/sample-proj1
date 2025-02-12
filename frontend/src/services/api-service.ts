@@ -18,6 +18,32 @@ export default class ApiService {
         const response = await fetch(`${this.baseUrl}/patients/${id}`);
         return await response.json();
     }
+    public async createPatient(data: any): Promise<any> {
+        const response = await fetch(`${this.baseUrl}/patients`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        return response.json();
+    }
+    public async updatePatient(id: string, data: any): Promise<any> {
+        const response = await fetch(`${this.baseUrl}/patients/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        return response.json();
+    }
+    public async deletePatient(id: string): Promise<any> {
+        const response = await fetch(`${this.baseUrl}/patients/${id}`, {
+            method: "DELETE",
+        });
+        return response.json();
+    }
     public async getConsultations(): Promise<any> {
         const response = await fetch(`${this.baseUrl}/consultations`);
         return response.json();
@@ -52,36 +78,6 @@ export default class ApiService {
         });
         return response.json();
     }
-
-    // New Patient endpoints
-    public async createPatient(data: any): Promise<any> {
-        const response = await fetch(`${this.baseUrl}/patients`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-        return response.json();
-    }
-    public async updatePatient(id: string, data: any): Promise<any> {
-        const response = await fetch(`${this.baseUrl}/patients/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-        return response.json();
-    }
-    public async deletePatient(id: string): Promise<any> {
-        const response = await fetch(`${this.baseUrl}/patients/${id}`, {
-            method: "DELETE",
-        });
-        return response.json();
-    }
-
-    // New Upload endpoints
     public async uploadFile(file: File): Promise<any> {
         const formData = new FormData();
         formData.append('file', file);

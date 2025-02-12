@@ -15,7 +15,7 @@ export default function Stack({
     orientation = "vertical",
     justifyContent,
     alignItems,
-    gap,
+    gap = "0.5rem",
     children,
     className,
     style,
