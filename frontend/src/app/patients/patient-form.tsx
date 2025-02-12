@@ -4,7 +4,7 @@ import Row from "@/components/row";
 import Stack from "@/components/stack";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import DatePicker from "@/components/datepicker";
+import DatePicker from "@/components/date-picker";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function PatientForm() {

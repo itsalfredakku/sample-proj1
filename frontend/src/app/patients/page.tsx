@@ -28,6 +28,7 @@ import {
 import React from "react";
 import ApiService from "@/services/api-service";
 import PatientForm from "./patient-form"
+import NoRecords from "@/blocks/no-records"
 
 
 export default function PatientsPage() {
@@ -79,6 +80,7 @@ export default function PatientsPage() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
+
                     {patients.map((patient: any) => (
                         <TableRow key={patient.id}>
                             <TableCell className="font-medium">{patient.id}</TableCell>
@@ -88,14 +90,21 @@ export default function PatientsPage() {
                         </TableRow>
                     ))}
                 </TableBody>
-                {/* <TableFooter>
+                <TableFooter>
                     <TableRow>
-                        <TableCell colSpan={3}>Total</TableCell>
-                        <TableCell className="text-right">$2,500.00</TableCell>
-                    </TableRow>
-                </TableFooter> */}
-            </Table>
+                        <TableCell colSpan={12}>
+                        {patients.length === 0 && (
+                            <div className="grid place-items-center">
+                                <NoRecords />
+                            </div>
+                        )}
+                        </TableCell>
 
+                        {/* <TableCell colSpan={3}>Total</TableCell>
+                        <TableCell className="text-right">$2,500.00</TableCell> */}
+                    </TableRow>
+                </TableFooter>
+            </Table>
         </Stack>
     );
 }
