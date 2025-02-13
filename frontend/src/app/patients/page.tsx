@@ -69,39 +69,42 @@ export default function PatientsPage() {
                     </Stack>
                 </Column>
             </Row>
-            <Table>
-                <TableCaption>A list of patients.</TableCaption>
+            <Table className="border">
+                {/* <TableCaption>A list of patients.</TableCaption> */}
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[100px]">Name</TableHead>
                         <TableHead>Age</TableHead>
-                        <TableHead>Last consultation</TableHead>
-                        <TableHead className="text-right">A</TableHead>
+                        <TableHead>Phone</TableHead>
+                        <TableHead>Email</TableHead>
+                        <TableHead className="w-[200px]">Address</TableHead>
+                        <TableHead className="text-right">Last consultation</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-
                     {patients.map((patient: any) => (
                         <TableRow key={patient.id}>
-                            <TableCell className="font-medium">{patient.id}</TableCell>
-                            <TableCell>{patient.id}</TableCell>
-                            <TableCell>{patient.id}</TableCell>
-                            <TableCell className="text-right">{patient.id}</TableCell>
+                            <TableCell className="font-medium">{patient.id}{patient.name}</TableCell>
+                            <TableCell>{patient.dateOfBirth}</TableCell>
+                            <TableCell>{patient.phoneNumber}</TableCell>
+                            <TableCell>{patient.email}</TableCell>
+                            <TableCell className="text-right">{patient.lastConsultationAt}</TableCell>
                         </TableRow>
                     ))}
+                    {patients.length === 0 && (
+                        <TableRow>
+                            <TableCell colSpan={6}>
+                                <div className="grid place-items-center">
+                                    <NoRecords />
+                                </div>
+                            </TableCell>
+                        </TableRow>
+                    )}
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TableCell colSpan={12}>
-                        {patients.length === 0 && (
-                            <div className="grid place-items-center">
-                                <NoRecords />
-                            </div>
-                        )}
-                        </TableCell>
-
-                        {/* <TableCell colSpan={3}>Total</TableCell>
-                        <TableCell className="text-right">$2,500.00</TableCell> */}
+                        <TableCell colSpan={3}>Summary</TableCell>
+                        <TableCell colSpan={3} className="text-right">10 of 100 patients</TableCell>
                     </TableRow>
                 </TableFooter>
             </Table>

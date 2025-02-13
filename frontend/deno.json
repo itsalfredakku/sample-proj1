@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "dev": "NO_COLOR=true next dev"
+  }
+}
