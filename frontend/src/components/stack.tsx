@@ -41,8 +41,8 @@ export default function Stack({
             }
         }
         // Cast child to React.ReactElement<any> to safely retrieve style property
-        const childStyle = ((child as React.ReactElement<any>).props.style) || {};
-        return React.cloneElement(child as React.ReactElement<any>, { style: { ...childStyle, ...marginStyle } });
+        const childStyle = ((child as React.ReactElement<{ style?: React.CSSProperties }>).props.style) || {};
+        return React.cloneElement(child as React.ReactElement<{ style?: React.CSSProperties }>, { style: { ...childStyle, ...marginStyle } });
     });
 
     return (

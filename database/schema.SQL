@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[Patient]
 (
-    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Id] UNIQUEIDENTIFIER NOT NULL CONSTRAINT [DF_Patient_Id] DEFAULT NEWID(),
     [Name] VARCHAR(100) NOT NULL,
     [DateOfBirth] DATE NULL,
     [Address] VARCHAR(200) NULL,
@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Patient]
 
 CREATE TABLE [dbo].[Consultation]
 (
-    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Id] UNIQUEIDENTIFIER NOT NULL CONSTRAINT [DF_Consultation_Id] DEFAULT NEWID(),
     [ConsultationDate] DATETIME2 NULL,
     [Description] NVARCHAR(MAX) NULL,
     [CreatedAt] DATETIME2 NOT NULL CONSTRAINT [DF_Consultation_CreatedAt] DEFAULT (SYSDATETIME()),
@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[Consultation]
 
 CREATE TABLE [dbo].[ConsultationAttachment]
 (
-    [Id] UNIQUEIDENTIFIER NOT NULL,
+    [Id] UNIQUEIDENTIFIER NOT NULL CONSTRAINT [DF_ConsultationAttachment_Id] DEFAULT NEWID(),
     [ConsultationId] UNIQUEIDENTIFIER NOT NULL,
     [FileName] VARCHAR(100) NOT NULL,
     [FilePath] VARCHAR(200) NOT NULL,

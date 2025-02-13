@@ -1,12 +1,13 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Header() {
     return (
         <header className="sticky top-0 row-start-1 flex justify-between items-center w-full px-6 py-4 pb-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 z-50">
             <div className="flex-shrink-0">
-                <a href="/">
+                <Link href="/">
                     <h3 className="text-2xl font-bold">Web App</h3>
-                </a>
+                </Link>
             </div>
             <nav className="flex gap-6 items-center">
                 <a
